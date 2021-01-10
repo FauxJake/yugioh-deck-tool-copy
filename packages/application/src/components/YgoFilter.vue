@@ -41,6 +41,15 @@
             />
         </div>
 
+        <div
+            class="form-group"
+            v-if="isFieldVisible('userCollection') && isUserCollectionAvailable"
+        >
+            <BFormCheckbox name="userCollection">
+                Only include owned cards.
+            </BFormCheckbox>
+        </div>
+
         <div class="form-group" v-if="isFieldVisible('archetype')">
             <VSelect
                 title="Archetype"
@@ -145,11 +154,15 @@ import type {
     CardFilter,
     CardSet,
     CardType,
+    EnvironmentConfig,
 } from "../../../core/src/main";
 import {
     CardTypeCategory,
     DEFAULT_BAN_STATE_ARR,
+    Environment,
+    TYPES,
 } from "../../../core/src/main";
+
 import type { PropType } from "@vue/composition-api";
 import {
     computed,
@@ -162,12 +175,16 @@ import VSelect from "vue-select";
 import { applicationContainer } from "../inversify.config";
 import { APPLICATION_TYPES } from "../types";
 import { appStore } from "../composition/state/appStore";
+import { BFormCheckbox } from "bootstrap-vue";
 
 const cardDatabase = applicationContainer.get<CardDatabase>(
     APPLICATION_TYPES.CardDatabase
 );
 const banlistService = applicationContainer.get<BanlistService>(
     APPLICATION_TYPES.BanlistService
+);
+const environmentConfig = applicationContainer.get<EnvironmentConfig>(
+    TYPES.EnvironmentConfig
 );
 
 export default defineComponent({
@@ -184,6 +201,7 @@ export default defineComponent({
     },
     components: {
         VSelect,
+        BFormCheckbox,
     },
     model: {
         prop: "filter",
@@ -217,6 +235,9 @@ export default defineComponent({
             cardDatabase.getLinkMarkers()
         );
 
+        const isUserCollectionAvailable = computed<boolean>(
+            () => environmentConfig.getEnvironment() == Environment.YGOPRODECK
+        );
         const hasBanStates = computed<boolean>(() => {
             const format = appStore(context).state.format.active;
             if (format == null) {
@@ -264,6 +285,7 @@ export default defineComponent({
 
             internalFilter,
 
+            isUserCollectionAvailable,
             hasBanStates,
             isMonster,
 

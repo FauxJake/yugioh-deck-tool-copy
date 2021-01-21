@@ -16,7 +16,7 @@
             <YgoPrice :cards="cards" />
         </header>
         <!-- Spill is set to 'revert', actual removal is done in custom draggable variant -->
-        <Draggable
+        <draggable
             class="deck-part__content"
             tag="div"
             :group="{ name: dragGroup, pull: true, put: true }"
@@ -35,7 +35,7 @@
                 @contextmenu.native.prevent="() => removeCard(card, cardIndex)"
             >
             </YgoCard>
-        </Draggable>
+        </draggable>
     </section>
 </template>
 
@@ -48,7 +48,6 @@ import YgoPrice from "../YgoPrice.vue";
 import YgoCard from "../YgoCard.vue";
 import { applicationContainer } from "../../inversify.config";
 import { APPLICATION_TYPES } from "../../types";
-import Draggable from "vuedraggable";
 import {
     DECK_PART_CARDS_ADD,
     DECK_PART_CARDS_REMOVE,
@@ -62,6 +61,7 @@ import {
     DECK_PART_PROP,
 } from "../../composition/dragging";
 import type { DeckController } from "../../controller/DeckController";
+import draggable from 'vuedraggable';
 
 const deckController = applicationContainer.get<DeckController>(
     APPLICATION_TYPES.DeckController
@@ -72,8 +72,8 @@ const logger = getLogger("YgoDeckPart");
 export default defineComponent({
     components: {
         YgoPrice,
-        YgoCard,
-        Draggable,
+        draggable,
+        YgoCard
     },
     props: {
         [DECK_PART_PROP]: {

@@ -15,7 +15,7 @@
                     ></YgoCard>
                 </template>
                 <template v-else>
-                    <Draggable
+                    <draggable
                         :group="{
                             name: dragGroup,
                             pull: 'clone',
@@ -32,7 +32,7 @@
                             :scale-vertically="true"
                             class="builder-matches__match__card"
                         ></YgoCard>
-                    </Draggable>
+                    </draggable>
                 </template>
 
                 <div class="builder-matches__match__details">
@@ -58,7 +58,6 @@ import { CardTypeCategory } from "../../../../core/src/main";
 import type { PropType } from "@vue/composition-api";
 import { computed, defineComponent } from "@vue/composition-api";
 import YgoCard from "../YgoCard.vue";
-import Draggable from "vuedraggable";
 import { createMoveFromBuilderValidator } from "../../composition/dragging";
 import { applicationContainer } from "../../inversify.config";
 import { APPLICATION_TYPES } from "../../types";
@@ -67,6 +66,7 @@ import { DECK_PART_CARDS_ADD } from "../../store/modules/deck";
 import { browserSupportsTouch } from "../../../../ui/src/main";
 import { showSuccess } from "../../composition/feedback";
 import { enableTooltip, disableTooltip } from "../../../../tooltip/src/main";
+import draggable from 'vuedraggable';
 
 const deckService = applicationContainer.get<DeckService>(
     APPLICATION_TYPES.DeckService
@@ -84,7 +84,7 @@ export default defineComponent({
     },
     components: {
         YgoCard,
-        Draggable,
+        draggable
     },
     setup(props, context) {
         const CARD_DISPLAY_LIMIT = 50;

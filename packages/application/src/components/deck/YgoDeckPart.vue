@@ -180,6 +180,7 @@ export default defineComponent({
                     $lightness: -8%
                 );
                 background-color: $color-deck-part-main;
+                background-image: url('/background.png');
             }
         }
 

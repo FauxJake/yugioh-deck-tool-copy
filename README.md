@@ -1,4 +1,4 @@
-# YuGiOh Deck-Tool
+# YuGiOh Deck-Tool (Copied)
 
 > A tool to view deck prices, share and edit decks, create random decks and much more
 

@@ -64,7 +64,7 @@ export default defineComponent({
             flex-direction: column;
             justify-content: space-between;
 
-            @include screen-min-width(lg) {
+            @include screen-min-width(xl) {
                 align-items: center;
                 flex-direction: row;
             }
@@ -72,7 +72,7 @@ export default defineComponent({
 
         &__total.h4 {
             margin-bottom: $margin-sm;
-            @include screen-min-width(lg) {
+            @include screen-min-width(xl) {
                 margin-bottom: 0;
             }
         }

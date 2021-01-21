@@ -237,13 +237,13 @@ export default defineComponent({
             padding: $margin-sm;
             border: 3px solid $black;
             gap: $margin-sm;
-            grid-template-columns: repeat(auto-fill, minmax(7ch, 1fr));
-            @include screen-min-width(md) {
-                grid-template-columns: repeat(auto-fill, minmax(8.5ch, 1fr));
-            }
-            @include screen-min-width(lg) {
-                grid-template-columns: repeat(auto-fill, minmax(10ch, 1fr));
-            }
+            grid-template-columns: repeat(10, 1fr)
+            // @include screen-min-width(md) {
+            //     grid-template-columns: repeat(auto-fill, minmax(10ch, 1fr));
+            // }
+            // @include screen-min-width(lg) {
+            //     grid-template-columns: repeat(auto-fill, minmax(10ch, 1fr));
+            // }
         }
     }
 }
